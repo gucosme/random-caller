@@ -1,5 +1,5 @@
 {
-  "name": "nodebr-meetup-random-caller",
+  "name": "random-caller",
   "version": "1.0.0",
   "description": "An app that calls randomly",
   "main": "src/index.js",
