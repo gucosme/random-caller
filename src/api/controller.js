@@ -3,7 +3,8 @@ const fetch = require('node-fetch');
 
 const { SPREADSHEET_URL } = require('../infra/config');
 const logger = require('../infra/logger');
-const participants = require('../services/participants');
+const { fromCsv, pickWinners } = require('../services/participants');
+const dialer = require('../services/dialer');
 
 function health(req, res) {
   res.json({ status: 'alive' });
@@ -16,10 +17,12 @@ async function getParticipants(req, res, next) {
     const response = await fetch(`${SPREADSHEET_URL}/${id}/pub?output=csv`);
     const buffer = await response.buffer();
 
-    res.json({
-      id,
-      participants: participants.fromCsv(buffer.toString()),
-    });
+    const participants = fromCsv(buffer.toString());
+    const winners = pickWinners(participants);
+
+    await dialer.dial(winners);
+
+    res.json({ status: 'ok' });
   } catch (e) {
     const error = new VError(e, 'Failed to get participants list');
     logger.error(error);

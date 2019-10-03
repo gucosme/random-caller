@@ -11,7 +11,7 @@ function makeRequest(participant) {
       authorization: `Basic ${TERAVOZ_ACCESS_TOKEN}`,
       'content-type': 'application/json',
     },
-    body: {
+    body: JSON.stringify({
       type: 'dialer',
       numbers: [participant.number],
       destination: '900',
@@ -20,11 +20,12 @@ function makeRequest(participant) {
       retries: '0',
       retry_gap: '0s',
       ttl: '60s',
-    },
+    }),
   });
 }
 
 async function dial(participants) {
+  logger.info('Calling winners');
   try {
     await Promise.all(participants.map(makeRequest));
   } catch (e) {
