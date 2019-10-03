@@ -9,9 +9,13 @@
   "author": "devs@teravoz",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "bunyan": "^1.8.12",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "node-fetch": "^2.6.0"
+    "helmet": "^3.21.1",
+    "node-fetch": "^2.6.0",
+    "verror": "^1.10.0"
   },
   "devDependencies": {
     "eslint": "^6.5.1",
