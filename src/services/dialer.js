@@ -1,12 +1,10 @@
 const VError = require('verror');
 const fetch = require('node-fetch');
 
+const { TERAVOZ_URL, TERAVOZ_ACCESS_TOKEN } = require('../infra/config');
 const logger = require('../infra/logger');
 
 function makeRequest(participant) {
-  const TERAVOZ_URL = 'https://api.teravoz.com.br';
-  const TERAVOZ_ACCESS_TOKEN = '';
-
   return fetch(`${TERAVOZ_URL}/actions`, {
     method: 'POST',
     headers: {

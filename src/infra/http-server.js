@@ -3,6 +3,7 @@ const cors = require('cors');
 const express = require('express');
 const helmet = require('helmet');
 
+const { HTTP_PORT } = require('./config');
 const logger = require('./logger');
 const { logging, errors } = require('./handlers');
 
@@ -15,7 +16,7 @@ function makeServer() {
   app.use(logging);
 
   function start() {
-    app.listen(3000, () => {
+    app.listen(HTTP_PORT, () => {
       logger.info('Listening on 3000...');
     });
   }

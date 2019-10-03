@@ -1,6 +1,7 @@
 const VError = require('verror');
 const fetch = require('node-fetch');
 
+const { SPREADSHEET_URL } = require('../infra/config');
 const logger = require('../infra/logger');
 const participants = require('../services/participants');
 
@@ -9,7 +10,6 @@ function health(req, res) {
 }
 
 async function getParticipants(req, res, next) {
-  const SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/e';
   const { id } = req.params;
 
   try {
