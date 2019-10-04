@@ -24,7 +24,7 @@ async function getParticipants(req, res, next) {
 
     res.json({ status: 'ok' });
   } catch (e) {
-    const error = new VError(e, 'Failed to get participants list');
+    const error = new VError(e, 'Failed to get winners list');
     logger.error(error);
 
     next(error);
